@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.util.Iterator;
 import java.util.Properties;
 import java.util.Set;
 
@@ -25,21 +24,18 @@ public class Translator {
         //пока тупо берем ключи пропертис и вставляем в пропертис якобы переведенное
         Properties properties = new Properties();
         Set keys;
-        String str;
         keys = p.keySet();
-        Iterator itr = keys.iterator();
-        while (itr.hasNext()) {
-            properties.put((String) itr.next(), "");
+        for (Object key : keys) {
+            properties.put(key, "");
         }
         return properties;
     }
 
     public String PropertiesToString(Properties p) throws IOException {
-        String s = new String();
+        String s = "";
         Writer outWriter = new StringWriter();
         p.store(outWriter, s);
-        String finalstring = outWriter.toString();
-        return finalstring;
+        return outWriter.toString();
     }
 
     public Properties StringToProperties(String s) throws IOException {
