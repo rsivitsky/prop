@@ -21,6 +21,7 @@ import java.util.Properties;
 
 @Controller
 public class WelcomeController {
+
     @RequestMapping(value = "/index", method = RequestMethod.POST)
     public ModelAndView loginForumUser(@RequestParam("ishodnik") String ishodnik) throws IOException {
         ModelAndView modelAndView = new ModelAndView();
