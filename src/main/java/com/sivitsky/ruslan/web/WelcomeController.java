@@ -32,6 +32,7 @@ public class WelcomeController {
         Properties prop = translator.TranslateProp(result);
 
         String finalString = translator.PropertiesToString(prop);
+        modelAndView.addObject("source", source);
         modelAndView.addObject("result", finalString);
         modelAndView.setViewName("index");
 
