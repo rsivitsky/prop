@@ -46,6 +46,7 @@ public class Translator {
         return p;
     }
 
+    
     public String retrievesSourceToDest(String original_lang, String dest_lang, String original_text) {
         return new RestTemplate().getForObject("http://syslang.com?src={original_lang}&dest={dest_lang}&text=" +
                 "{original_text}&email=rsivitsky@yandex.ru&password=richard",
