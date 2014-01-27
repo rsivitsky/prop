@@ -12,16 +12,6 @@ import java.util.Set;
 public class Translator {
 
 
-    //
-   /* private Properties props = new Properties();
-
-    public Properties getProps() {
-        return props;
-    }
-
-    public void setProps(Properties props) {
-        this.props = props;
-    }  */
     public Properties TranslateProp(Properties p) {
         //пока тупо берем ключи пропертис и вставляем в пропертис якобы переведенное
         Properties properties = new Properties();
@@ -32,7 +22,7 @@ public class Translator {
         }
         return properties;
     }
-    
+
 
     public String PropertiesToString(Properties p) throws IOException {
         String s = "";
