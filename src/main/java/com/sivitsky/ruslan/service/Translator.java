@@ -32,6 +32,7 @@ public class Translator {
         }
         return properties;
     }
+    
 
     public String PropertiesToString(Properties p) throws IOException {
         String s = "";
@@ -40,7 +41,7 @@ public class Translator {
         return outWriter.toString();
     }
 
-    
+
     public Properties StringToProperties(String s) throws IOException {
         final Properties p = new Properties();
         p.load(new StringReader(s));
