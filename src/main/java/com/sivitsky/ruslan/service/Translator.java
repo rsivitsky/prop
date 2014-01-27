@@ -1,5 +1,7 @@
 package com.sivitsky.ruslan.service;
 
+import org.springframework.web.client.RestTemplate;
+
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -42,5 +44,11 @@ public class Translator {
         final Properties p = new Properties();
         p.load(new StringReader(s));
         return p;
+    }
+
+    public String retrievesSourceToDest(String original_lang, String dest_lang, String original_text) {
+        return new RestTemplate().getForObject("http://syslang.com?src={original_lang}&dest={dest_lang}&text=" +
+                "{original_text}&email=rsivitsky@yandex.ru&password=richard",
+                String.class, original_lang, dest_lang, original_text);
     }
 }
