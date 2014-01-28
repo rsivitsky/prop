@@ -19,8 +19,10 @@ public class Translator {
         Properties properties = new Properties();
         Set keys;
         keys = p.keySet();
+        String klichnik = "!!!";
         for (Object key : keys) {
-            properties.put(key, "");
+            //properties.put(key, p.getProperty(key.toString())+klichnik);
+            properties.setProperty(key.toString(), p.getProperty(key.toString()) + "!!!");
         }
         return properties;
     }
