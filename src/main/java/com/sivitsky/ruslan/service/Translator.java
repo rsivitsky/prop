@@ -14,7 +14,7 @@ import java.util.Set;
 public class Translator {
 
 
-    public Properties TranslateProp(Properties p) {
+    public Properties translateProp(Properties p) {
         //пока тупо берем ключи пропертис и вставляем в пропертис якобы переведенное
         Properties properties = new Properties();
         Set keys;
@@ -26,7 +26,7 @@ public class Translator {
     }
 
 
-    public String PropertiesToString(Properties p) throws IOException {
+    public String propertiesToString(Properties p) throws IOException {
         String s = "";
         Writer outWriter = new StringWriter();
         p.store(outWriter, s);
@@ -34,7 +34,7 @@ public class Translator {
     }
 
 
-    public Properties StringToProperties(String s) throws IOException {
+    public Properties stringToProperties(String s) throws IOException {
         final Properties p = new Properties();
         p.load(new StringReader(s));
         return p;
