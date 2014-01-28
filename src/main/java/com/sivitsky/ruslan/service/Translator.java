@@ -18,6 +18,7 @@ public class Translator {
         //пока тупо берем ключи пропертис и вставляем в пропертис якобы переведенное
         Properties properties = new Properties();
         Set keys;
+        StringBuffer stringBuffer = new StringBuffer();
         keys = p.keySet();
         String klichnik = "!!!";
         for (Object key : keys) {

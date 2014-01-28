@@ -1,7 +1,6 @@
 package com.sivitsky.ruslan.web;
 
 import com.sivitsky.ruslan.service.Translator;
-import com.sivitsky.ruslan.service.impl.TranslateServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,8 +33,9 @@ public class WelcomeController {
 
         String finalString = translator.propertiesToString(prop);
 
-        TranslateServiceImpl translateService = new TranslateServiceImpl();
-        finalString = translateService.translateLine(source, finalString, "");
+        //TranslateServiceImpl translateService = new TranslateServiceImpl();
+        //finalString = translateService.translateLine(source, finalString, "");
+
         modelAndView.addObject("source", source);
         modelAndView.addObject("result", finalString);
         modelAndView.setViewName("index");
