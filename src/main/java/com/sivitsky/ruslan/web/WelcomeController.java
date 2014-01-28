@@ -28,13 +28,13 @@ public class WelcomeController {
     public ModelAndView loginForumUser(@RequestParam("source") String source) throws IOException {
         ModelAndView modelAndView = new ModelAndView();
         Translator translator = new Translator();
-        Properties result = translator.StringToProperties(source);
-        Properties prop = translator.TranslateProp(result);
+        Properties result = translator.stringToProperties(source);
+        Properties prop = translator.translateProp(result);
 
-        String finalString = translator.PropertiesToString(prop);
+        String finalString = translator.propertiesToString(prop);
 
-        String for_Print = translator.retrievesSourceToDest("en", "ru", "castle");
-        System.out.print(for_Print);
+        //String for_Print = translator.retrievesSourceToDest("en", "ru", "castle");
+        //System.out.print(for_Print);
         modelAndView.addObject("source", source);
         modelAndView.addObject("result", finalString);
         modelAndView.setViewName("index");
