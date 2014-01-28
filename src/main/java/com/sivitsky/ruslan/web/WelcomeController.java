@@ -33,7 +33,8 @@ public class WelcomeController {
 
         String finalString = translator.PropertiesToString(prop);
 
-        //String for_Print = translator.retrievesSourceToDest("en", "ru", "castle");
+        String for_Print = translator.retrievesSourceToDest("en", "ru", "castle");
+        System.out.print(for_Print);
         modelAndView.addObject("source", source);
         modelAndView.addObject("result", finalString);
         modelAndView.setViewName("index");
