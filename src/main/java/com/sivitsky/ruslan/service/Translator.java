@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
@@ -40,8 +42,14 @@ public class Translator {
 
 
     public String retrievesSourceToDest(String original_lang, String dest_lang, String original_text) {
-        return new RestTemplate().getForObject("http://syslang.com?src={original_lang}&dest={dest_lang}&text=" +
-                "{original_text}&email=rsivitsky@yandex.ru&password=richard",
-                String.class, original_lang, dest_lang, original_text);
+        Map<String, String> params = new HashMap<>();
+        params.put("email", "rsivitsky@yandex.ru");
+        params.put("password", "richard");
+
+        params.put("src", original_lang);
+        params.put("dest", dest_lang);
+        params.put("text", original_text);
+        return new RestTemplate().getForObject("http://syslang.com", String.class, params);
     }
+
 }
