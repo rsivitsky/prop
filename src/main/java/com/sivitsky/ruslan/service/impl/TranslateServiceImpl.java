@@ -13,6 +13,7 @@ public class TranslateServiceImpl implements TranslateService {
 
     @Override
     public String translateLine(String src, String dest, String line) {
+        line = dest;
         return line.concat("!!!");
     }
 }

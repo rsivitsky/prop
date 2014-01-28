@@ -1,6 +1,7 @@
 package com.sivitsky.ruslan.web;
 
 import com.sivitsky.ruslan.service.Translator;
+import com.sivitsky.ruslan.service.impl.TranslateServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,8 +34,8 @@ public class WelcomeController {
 
         String finalString = translator.propertiesToString(prop);
 
-        //String for_Print = translator.retrievesSourceToDest("en", "ru", "castle");
-        //System.out.print(for_Print);
+        TranslateServiceImpl translateService = new TranslateServiceImpl();
+        finalString = translateService.translateLine(source, finalString, "");
         modelAndView.addObject("source", source);
         modelAndView.addObject("result", finalString);
         modelAndView.setViewName("index");
