@@ -8,4 +8,6 @@ package com.sivitsky.ruslan.service;
 public interface TranslateService {
 
     String translateLine(String src, String dest, String line);
+
+    String retrievesSourceToDest(String original_lang, String dest_lang, String original_text);
 }
