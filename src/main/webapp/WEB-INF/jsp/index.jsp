@@ -23,7 +23,24 @@
     <form method="post" action="<spring:url value="/index.html"/>">
         <div class="row">
             <div class="col-xs-6">
-                <div class="panel panel-default clearfix">
+                <input list="original_langs">
+                <datalist id="original_langs">
+                    <option value="ru">russian
+                    <option value="en">english
+                </datalist>
+            </div>
+            <div class="col-xs-6">
+                <input list="dest_langs">
+                <datalist id="dest_langs">
+                    <option value="ru">russian
+                    <option value="en">english
+                </datalist>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-6">
+            <div class="panel panel-default clearfix">
                     <div class="panel-heading">Source
                     </div>
                     <div class="panel-body">

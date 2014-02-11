@@ -33,7 +33,7 @@ public class WelcomeController {
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.POST)
-    public ModelAndView loginForumUser(@RequestParam("source") String source) throws IOException {
+    public ModelAndView loginForumUser(@RequestParam("source") String source, @RequestParam("original_langs") String original_langs, @RequestParam("dest_langs") String dest_langs) throws IOException {
         ModelAndView modelAndView = new ModelAndView();
         //Translator translator = new Translator();
         // TranslateService translateService;
@@ -45,7 +45,7 @@ public class WelcomeController {
         //TranslateServiceImpl translateService = new TranslateServiceImpl();
         //finalString = translateService.translateLine(source, finalString, "");
 
-        String finalString = translateService.retrievesSourceToDest("en", "ru", source);
+        String finalString = translateService.retrievesSourceToDest(original_langs, dest_langs, source);
 
         modelAndView.addObject("source", source);
         modelAndView.addObject("result", finalString);

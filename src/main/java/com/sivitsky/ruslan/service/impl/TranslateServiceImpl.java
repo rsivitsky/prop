@@ -26,10 +26,12 @@ public class TranslateServiceImpl implements TranslateService {
         Map<String, String> params = new HashMap<>();
 
         params.put("key", "trnsl.1.1.20140211T084212Z.6d755fd3df9c1609.b4793690d02bea684c940bcf339050722c4757f8");
-        params.put("lang", original_lang + "-" + dest_lang);
-        params.put("text", "original_text");
-        params.put("format", "plain");
-        params.put("options", "1");
+        // params.put("lang", original_lang + "-" + dest_lang);
+
+        params.put("text", original_text);
+        params.put("lang", dest_lang);
+        // params.put("format", "plain");
+        // params.put("options", "1");
         return new RestTemplate().getForObject("https://translate.yandex.net/api/v1.5/tr/translate", String.class, params);
     }
 }
