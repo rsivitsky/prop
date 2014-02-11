@@ -45,7 +45,8 @@ public class WelcomeController {
         //TranslateServiceImpl translateService = new TranslateServiceImpl();
         //finalString = translateService.translateLine(source, finalString, "");
 
-        String finalString = translateService.retrievesSourceToDest(original_langs, dest_langs, source);
+        //String finalString = translateService.retrievesSourceToDest(original_langs, dest_langs, source);
+        String finalString = translateService.v1(original_langs, dest_langs, source);
 
         modelAndView.addObject("source", source);
         modelAndView.addObject("result", finalString);

@@ -10,4 +10,6 @@ public interface TranslateService {
     String translateLine(String src, String dest, String line);
 
     String retrievesSourceToDest(String original_lang, String dest_lang, String original_text);
+
+    String v1(String original_lang, String dest_lang, String original_text);
 }

@@ -32,7 +32,8 @@ public class TranslateServiceImpl implements TranslateService {
         return v1(original_lang, dest_lang, original_text);
     }
 
-    private String v1(String original_lang, String dest_lang, String original_text) {
+    @Override
+    public String v1(String original_lang, String dest_lang, String original_text) {
         URI targetUrl = UriComponentsBuilder.fromUriString(YANDEX_BASE_URL)
                 .path(TRANSLATE_API)
                 .queryParam("key", YANDEX_KEY)
