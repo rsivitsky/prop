@@ -23,7 +23,13 @@
         </dependency>
 
         <dependency>
-            <groupId>javax.servlet.jsp</groupId>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>1.7.1</version>
+        </dependency>
+
+        <dependency>
+        <groupId>javax.servlet.jsp</groupId>
             <artifactId>javax.servlet.jsp-api</artifactId>
             <version>2.2.1</version>
             <scope>provided</scope>

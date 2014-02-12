@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
@@ -33,6 +34,7 @@ public class WelcomeController {
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.POST)
+    @ResponseBody
     public ModelAndView loginForumUser(@RequestParam("source") String source, @RequestParam("original_langs") String original_langs, @RequestParam("dest_langs") String dest_langs) throws IOException {
         ModelAndView modelAndView = new ModelAndView();
         //Translator translator = new Translator();
@@ -46,10 +48,10 @@ public class WelcomeController {
         //finalString = translateService.translateLine(source, finalString, "");
 
         //String finalString = translateService.retrievesSourceToDest(original_langs, dest_langs, source);
-        String finalString = translateService.v1(original_langs, dest_langs, source);
+        // String finalString = translateService.v1(original_langs, dest_langs, source);
 
         modelAndView.addObject("source", source);
-        modelAndView.addObject("result", finalString);
+        modelAndView.addObject("result", "жопа");
         modelAndView.setViewName("index");
 
         return modelAndView;

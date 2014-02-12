@@ -1,5 +1,8 @@
 package com.sivitsky.ruslan.service;
 
+import java.io.IOException;
+import java.util.Properties;
+
 /**
  * @author Paul Jakimov
  *         Date: 1/28/14
@@ -7,9 +10,13 @@ package com.sivitsky.ruslan.service;
  */
 public interface TranslateService {
 
+    Properties translateProp(String original_lang, String dest_lang, Properties p);
+
+    Properties stringToProperties(String s) throws IOException;
+
     String translateLine(String src, String dest, String line);
 
-    String retrievesSourceToDest(String original_lang, String dest_lang, String original_text);
+    //String retrievesSourceToDest(String original_lang, String dest_lang, String original_text);
 
-    String v1(String original_lang, String dest_lang, String original_text);
+    //String v1(String original_lang, String dest_lang, String original_text);
 }
