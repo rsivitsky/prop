@@ -34,6 +34,37 @@
                 <datalist id="dest_langs">
                     <option value="ru">russian
                     <option value="en">english
+                    <option value="sq">albanian
+                    <option value="hy">armenian
+                    <option value="az">azerbaijani
+                    <option value="be">byelorussian
+                    <option value="bg">bulgarian
+                    <option value="hu">hungarian
+                    <option value="nl">flemish
+                    <option value="el">greek
+                    <option value="da">danish
+                    <option value="it">italian
+                    <option value="es">spanish
+                    <option value="ca">catalan
+                    <option value="lv">latvian
+                    <option value="lt">lithuanian
+                    <option value="mk">macedonian
+                    <option value="de">german
+                    <option value="no">norwegian
+                    <option value="pl">polish
+                    <option value="pt">portuguese
+                    <option value="ro">romanian
+                    <option value="sr">serbian
+                    <option value="sk">slovak
+                    <option value="sl">slovenian
+                    <option value="tr">turkish
+                    <option value="uk">ukrainian
+                    <option value="fi">finnish
+                    <option value="fr">french
+                    <option value="hr">croatian
+                    <option value="cs">czech
+                    <option value="sv">swedish
+                    <option value="et">estonian
                 </datalist>
             </div>
         </div>
