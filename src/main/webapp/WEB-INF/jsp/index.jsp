@@ -30,8 +30,8 @@
                 </datalist>
             </div>
             <div class="col-xs-6">
-                <input list="dest_langs">
-                <datalist id="dest_langs">
+                <input list="dest_langs" name="dest_langs">${dest_langs}
+                <datalist id="dest_langs" name="dest_langs">${dest_langs}
                     <option value="ru">russian
                     <option value="en">english
                     <option value="sq">albanian

@@ -83,14 +83,14 @@ public class TranslateServiceImpl implements TranslateService {
     }
 
     @Override
-    public Properties translateProp(String original_lang, String dest_lang, Properties p) {
+    public Properties translateProp(String dest_lang, Properties p) {
         Properties properties = new Properties();
         Set keys;
         // StringBuffer stringBuffer = new StringBuffer();
         keys = p.keySet();
         for (Object key : keys) {
             //properties.put(key, p.getProperty(key.toString()));
-            properties.put(key, v1(original_lang, dest_lang, p.getProperty(key.toString())));
+            properties.put(key, v1(dest_lang, p.getProperty(key.toString())));
             //properties.setProperty(key.toString(), p.getProperty(key.toString()) + "!!!");
         }
         return properties;
@@ -102,13 +102,13 @@ public class TranslateServiceImpl implements TranslateService {
     }*/
 
 
-    public String v1(String original_lang, String dest_lang, String original_text) {
+    public String v1(String dest_lang, String original_text) {
 
         Gson gson = new Gson();
         URI targetUrl = UriComponentsBuilder.fromUriString(YANDEX_BASE_URL)
                 .path(TRANSLATE_API)
                 .queryParam("key", YANDEX_KEY)
-                .queryParam("lang", original_lang + "-" + dest_lang)
+                .queryParam("lang", dest_lang)
                 .queryParam("text", original_text)
                 .build()
                 .toUri();
@@ -135,7 +135,7 @@ public class TranslateServiceImpl implements TranslateService {
         properties.put("size", "big");
         properties.put("weight", "ass");
 
-        Properties properties1 = new TranslateServiceImpl().translateProp("en", "ru", properties);
+        Properties properties1 = new TranslateServiceImpl().translateProp("ru", properties);
 
         properties.list(System.out);
         properties1.list(System.out);

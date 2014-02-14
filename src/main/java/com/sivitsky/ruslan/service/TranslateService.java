@@ -10,7 +10,7 @@ import java.util.Properties;
  */
 public interface TranslateService {
 
-    Properties translateProp(String original_lang, String dest_lang, Properties p);
+    Properties translateProp(String dest_lang, Properties p);
 
     Properties stringToProperties(String s) throws IOException;
 
@@ -20,5 +20,5 @@ public interface TranslateService {
 
     //String retrievesSourceToDest(String original_lang, String dest_lang, String original_text);
 
-    //String v1(String original_lang, String dest_lang, String original_text);
+    // String v1(String dest_lang, String original_text);
 }

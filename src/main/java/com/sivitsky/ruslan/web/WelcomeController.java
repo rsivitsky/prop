@@ -1,7 +1,6 @@
 package com.sivitsky.ruslan.web;
 
 import com.sivitsky.ruslan.service.TranslateService;
-import com.sivitsky.ruslan.service.impl.TranslateServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +34,7 @@ public class WelcomeController {
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.POST)
-    public ModelAndView loginForumUser(@RequestParam("source") String source) throws IOException {
+    public ModelAndView loginForumUser(@RequestParam("source") String source, @RequestParam("dest_langs") String dest_langs) throws IOException {
         ModelAndView modelAndView = new ModelAndView();
         //Translator translator = new Translator();
         // TranslateService translateService1;
@@ -50,13 +49,13 @@ public class WelcomeController {
         //String finalString = translateService.retrievesSourceToDest(original_langs, dest_langs, source);
         // String finalString = translateService.v1(original_langs, dest_langs, source);
 
-        TranslateServiceImpl translateService1 = new TranslateServiceImpl();
+        //TranslateServiceImpl translateService1 = new TranslateServiceImpl();
 
-        Properties properties = translateService1.stringToProperties(source);
+        Properties properties = translateService.stringToProperties(source);
 
-        Properties properties1 = translateService1.translateProp("en", "de", properties);
+        Properties properties1 = translateService.translateProp(dest_langs, properties);
 
-        String result = translateService1.propertiesToString(properties1);
+        String result = translateService.propertiesToString(properties1);
 
 
         modelAndView.addObject("source", source);
