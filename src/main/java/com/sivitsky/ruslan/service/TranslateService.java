@@ -14,6 +14,8 @@ public interface TranslateService {
 
     Properties stringToProperties(String s) throws IOException;
 
+    String propertiesToString(Properties p) throws IOException;
+
     String translateLine(String src, String dest, String line);
 
     //String retrievesSourceToDest(String original_lang, String dest_lang, String original_text);

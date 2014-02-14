@@ -8,6 +8,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Properties;
@@ -70,6 +72,14 @@ public class TranslateServiceImpl implements TranslateService {
         final Properties p = new Properties();
         p.load(new StringReader(s));
         return p;
+    }
+
+    @Override
+    public String propertiesToString(Properties p) throws IOException {
+        String s = "";
+        Writer outWriter = new StringWriter();
+        p.store(outWriter, s);
+        return outWriter.toString();
     }
 
     @Override
