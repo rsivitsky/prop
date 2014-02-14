@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -83,9 +84,9 @@
 
             <div class="col-xs-6">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Result</div>
+                    <div class="panel-heading" charset=utf-8>Result</div>
                     <div class="panel-body">
-                        <textarea name="result" class="form-control"
+                        <textarea name="result" class="form-control" charset="utf-8"
                                   style="width: 100%;height: 300px;">${result}</textarea>
                     </div>
                 </div>
