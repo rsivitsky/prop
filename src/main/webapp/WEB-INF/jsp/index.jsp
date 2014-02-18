@@ -21,7 +21,7 @@
 
     <h2>Property Translator</h2>
 
-    <form method="post" action="<spring:url value="/index.html"/>">
+    <form:form method="post" action="<spring:url value="/index.html"/>" commandName="theme">
         <div class="row">
             <div class="col-xs-6">
                 <input list="original_langs">
@@ -72,8 +72,8 @@
 
         <div class="row">
             <div class="col-xs-6">
-            <div class="panel panel-default clearfix">
-                    <div class="panel-heading">Source
+                <div class="panel panel-default clearfix">
+                <div class="panel-heading">Source
                     </div>
                     <div class="panel-body">
                         <textarea class="form-control" name="source"
@@ -100,7 +100,7 @@
                 </button>
             </div>
         </div>
-    </form>
+    </form:form>
 </div>
 </body>
 </html>
