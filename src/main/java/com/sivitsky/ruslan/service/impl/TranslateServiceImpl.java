@@ -19,7 +19,7 @@ import java.util.Set;
  * @author Paul Jakimov
  *         Date: 1/28/14
  *         Time: 7:18 PM
- */
+ */ /*
 class GsonAnswer {
     private int code;
     private String lang;
@@ -51,7 +51,7 @@ class GsonAnswer {
         this.lang = lang;
     }
 }
-
+*/
 @Service
 public class TranslateServiceImpl implements TranslateService {
 
@@ -83,7 +83,7 @@ public class TranslateServiceImpl implements TranslateService {
     }
 
     @Override
-    public Properties translateProp(String dest_lang, Properties p) {
+    public Properties translateProp(String dest_lang, Properties p) throws NoSuchFieldException {
         Properties properties = new Properties();
         Set keys;
         // StringBuffer stringBuffer = new StringBuffer();
@@ -102,7 +102,7 @@ public class TranslateServiceImpl implements TranslateService {
     }*/
 
 
-    public String v1(String dest_lang, String original_text) {
+    public String v1(String dest_lang, String original_text) throws NoSuchFieldException {
 
         Gson gson = new Gson();
         URI targetUrl = UriComponentsBuilder.fromUriString(YANDEX_BASE_URL)
@@ -114,9 +114,11 @@ public class TranslateServiceImpl implements TranslateService {
                 .toUri();
 
         String br = new RestTemplate().getForObject(targetUrl, String.class);
-        GsonAnswer gsonAnswer = gson.fromJson(br, GsonAnswer.class);
+        // GsonAnswer gsonAnswer = gson.fromJson(br, GsonAnswer.class);
         //return new RestTemplate().getForObject(targetUrl, String.class);
-        return gsonAnswer.getText();
+        gson = gson.fromJson(br, Gson.class);
+        String fieldname = "text";
+        return gson.getClass().getField(fieldname).toString();
     }
 
     private String v2(final String original_lang, final String dest_lang, final String original_text) {
@@ -127,7 +129,7 @@ public class TranslateServiceImpl implements TranslateService {
         }});
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchFieldException {
 
 
         Properties properties = new Properties();

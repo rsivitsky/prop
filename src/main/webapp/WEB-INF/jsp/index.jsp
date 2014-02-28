@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,52 +22,16 @@
 
     <h2>Property Translator</h2>
 
-    <form:form method="post" action="<spring:url value="/index.html"/>" commandName="theme">
+    <form:form method="post" commandName="translateModel">
         <div class="row">
             <div class="col-xs-6">
-                <input list="original_langs">
-                <datalist id="original_langs">
-                    <option value="ru">russian
-                    <option value="en">english
-                </datalist>
+
             </div>
             <div class="col-xs-6">
-                <input list="dest_langs" name="dest_langs">${dest_langs}
-                <datalist id="dest_langs" name="dest_langs">${dest_langs}
-                    <option value="ru">russian
-                    <option value="en">english
-                    <option value="sq">albanian
-                    <option value="hy">armenian
-                    <option value="az">azerbaijani
-                    <option value="be">byelorussian
-                    <option value="bg">bulgarian
-                    <option value="hu">hungarian
-                    <option value="nl">flemish
-                    <option value="el">greek
-                    <option value="da">danish
-                    <option value="it">italian
-                    <option value="es">spanish
-                    <option value="ca">catalan
-                    <option value="lv">latvian
-                    <option value="lt">lithuanian
-                    <option value="mk">macedonian
-                    <option value="de">german
-                    <option value="no">norwegian
-                    <option value="pl">polish
-                    <option value="pt">portuguese
-                    <option value="ro">romanian
-                    <option value="sr">serbian
-                    <option value="sk">slovak
-                    <option value="sl">slovenian
-                    <option value="tr">turkish
-                    <option value="uk">ukrainian
-                    <option value="fi">finnish
-                    <option value="fr">french
-                    <option value="hr">croatian
-                    <option value="cs">czech
-                    <option value="sv">swedish
-                    <option value="et">estonian
-                </datalist>
+                <form:select path="dest_langs">
+                    <form:option value="NONE" label="--- Select ---"/>
+                    <form:options items="${dest_langsList}"/>
+                </form:select>
             </div>
         </div>
 
@@ -76,8 +41,8 @@
                 <div class="panel-heading">Source
                     </div>
                     <div class="panel-body">
-                        <textarea class="form-control" name="source"
-                                  style="width: 100%;height: 300px;">${source}</textarea>
+                        <form:textarea class="form-control" path="source"
+                                       style="width: 100%;height: 300px;"/>${translatemodel.source}
                     </div>
                 </div>
             </div>
@@ -86,8 +51,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading" charset=utf-8>Result</div>
                     <div class="panel-body">
-                        <textarea name="result" class="form-control" charset="utf-8"
-                                  style="width: 100%;height: 300px;">${result}</textarea>
+                        <form:textarea path="result" class="form-control" charset="utf-8"
+                                       style="width: 100%;height: 300px;"/>${translatemodel.result}
                     </div>
                 </div>
             </div>
@@ -102,5 +67,6 @@
         </div>
     </form:form>
 </div>
+
 </body>
 </html>
