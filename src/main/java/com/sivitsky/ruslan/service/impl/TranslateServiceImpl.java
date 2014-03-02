@@ -19,39 +19,8 @@ import java.util.Set;
  * @author Paul Jakimov
  *         Date: 1/28/14
  *         Time: 7:18 PM
- */ /*
-class GsonAnswer {
-    private int code;
-    private String lang;
+ */
 
-
-    private String text;
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getLang() {
-        return lang;
-    }
-
-    public void setLang(String lang) {
-        this.lang = lang;
-    }
-}
-*/
 @Service
 public class TranslateServiceImpl implements TranslateService {
 
@@ -60,6 +29,18 @@ public class TranslateServiceImpl implements TranslateService {
     public static final String YANDEX_V2_URL = "https://translate.yandex.net/api/v1.5/tr/translate?key={key}&lang={lang}&text={text}";
     //public static final String TRANSLATE_API = "/api/v1.5/tr/translate";
     public static final String TRANSLATE_API = "api/v1.5/tr.json/translate";
+
+    class GsonAnswer {
+        private int code;
+        private String lang;
+
+
+        private String text;
+
+        public String getText() {
+            return text;
+        }
+    }
 
     @Override
     public String translateLine(String src, String dest, String line) {
@@ -83,10 +64,9 @@ public class TranslateServiceImpl implements TranslateService {
     }
 
     @Override
-    public Properties translateProp(String dest_lang, Properties p) throws NoSuchFieldException {
+    public Properties translateProp(String dest_lang, Properties p) {
         Properties properties = new Properties();
         Set keys;
-        // StringBuffer stringBuffer = new StringBuffer();
         keys = p.keySet();
         for (Object key : keys) {
             //properties.put(key, p.getProperty(key.toString()));
@@ -102,7 +82,7 @@ public class TranslateServiceImpl implements TranslateService {
     }*/
 
 
-    public String v1(String dest_lang, String original_text) throws NoSuchFieldException {
+    public String v1(String dest_lang, String original_text) {
 
         Gson gson = new Gson();
         URI targetUrl = UriComponentsBuilder.fromUriString(YANDEX_BASE_URL)
@@ -114,11 +94,9 @@ public class TranslateServiceImpl implements TranslateService {
                 .toUri();
 
         String br = new RestTemplate().getForObject(targetUrl, String.class);
-        // GsonAnswer gsonAnswer = gson.fromJson(br, GsonAnswer.class);
-        //return new RestTemplate().getForObject(targetUrl, String.class);
-        gson = gson.fromJson(br, Gson.class);
-        String fieldname = "text";
-        return gson.getClass().getField(fieldname).toString();
+        GsonAnswer gsonAnswer = gson.fromJson(br, GsonAnswer.class);
+
+        return gsonAnswer.getText();
     }
 
     private String v2(final String original_lang, final String dest_lang, final String original_text) {
@@ -137,7 +115,10 @@ public class TranslateServiceImpl implements TranslateService {
         properties.put("size", "big");
         properties.put("weight", "ass");
 
-        Properties properties1 = new TranslateServiceImpl().translateProp("ru", properties);
+        Properties properties1 = null;
+
+        properties1 = new TranslateServiceImpl().translateProp("ru", properties);
+
 
         properties.list(System.out);
         properties1.list(System.out);

@@ -50,7 +50,12 @@ public class WelcomeController {
 
         Properties properties = translateService.stringToProperties(translateModel.getSource());
 
-        Properties properties1 = translateService.translateProp(translateModel.getDest_langs(), properties);
+        Properties properties1 = null;
+        try {
+            properties1 = translateService.translateProp(translateModel.getDest_langs(), properties);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         translateModel.setResult(translateService.propertiesToString(properties1));
 
