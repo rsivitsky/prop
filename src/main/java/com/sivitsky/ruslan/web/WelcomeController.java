@@ -4,6 +4,7 @@ import com.sivitsky.ruslan.model.TranslateModel;
 import com.sivitsky.ruslan.service.TranslateService;
 import com.sivitsky.ruslan.service.impl.TranslateServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,6 +23,15 @@ import java.util.Properties;
  */
 @Controller
 public class WelcomeController {
+
+    @Value("${yandex_base_url}")
+    private String yandex_base_url;
+
+    @Value("${yandex_key}")
+    private String yandex_key;
+
+    @Value("${translate_api}")
+    private String translate_api;
 
 
     private final TranslateService translateService;
@@ -51,11 +61,9 @@ public class WelcomeController {
         Properties properties = translateService.stringToProperties(translateModel.getSource());
 
         Properties properties1 = null;
-        try {
-            properties1 = translateService.translateProp(translateModel.getDest_langs(), properties);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+
+        properties1 = translateService.translateProp(translateModel.getDest_langs(), properties);
+
 
         translateModel.setResult(translateService.propertiesToString(properties1));
 

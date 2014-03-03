@@ -2,6 +2,7 @@ package com.sivitsky.ruslan.service.impl;
 
 import com.google.gson.Gson;
 import com.sivitsky.ruslan.service.TranslateService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -24,11 +25,34 @@ import java.util.Set;
 @Service
 public class TranslateServiceImpl implements TranslateService {
 
-    public static final String YANDEX_BASE_URL = "https://translate.yandex.net";
-    public static final String YANDEX_KEY = "trnsl.1.1.20140211T084212Z.6d755fd3df9c1609.b4793690d02bea684c940bcf339050722c4757f8";
+    @Value("${yandex_base_url}")
+    private String yandex_base_url;
+
+    @Value("${yandex_key}")
+    private String yandex_key;
+
+    @Value("${translate_api}")
+    private String translate_api;
+
+
+    public String getYandex_base_url() {
+        return yandex_base_url;
+    }
+
+    public String getYandex_key() {
+        return yandex_key;
+    }
+
+    public String getTranslate_api() {
+        return translate_api;
+    }
+
+    //public static final String YANDEX_BASE_URL = "https://translate.yandex.net";
+    //public static final String YANDEX_KEY = "trnsl.1.1.20140211T084212Z.6d755fd3df9c1609.b4793690d02bea684c940bcf339050722c4757f8";
     public static final String YANDEX_V2_URL = "https://translate.yandex.net/api/v1.5/tr/translate?key={key}&lang={lang}&text={text}";
     //public static final String TRANSLATE_API = "/api/v1.5/tr/translate";
-    public static final String TRANSLATE_API = "api/v1.5/tr.json/translate";
+    //public static final String TRANSLATE_API = "api/v1.5/tr.json/translate";
+
 
     class GsonAnswer {
         private int code;
@@ -84,10 +108,11 @@ public class TranslateServiceImpl implements TranslateService {
 
     public String v1(String dest_lang, String original_text) {
 
+
         Gson gson = new Gson();
-        URI targetUrl = UriComponentsBuilder.fromUriString(YANDEX_BASE_URL)
-                .path(TRANSLATE_API)
-                .queryParam("key", YANDEX_KEY)
+        URI targetUrl = UriComponentsBuilder.fromUriString(getYandex_base_url())
+                .path(getTranslate_api())
+                .queryParam("key", getYandex_key())
                 .queryParam("lang", dest_lang)
                 .queryParam("text", original_text)
                 .build()
@@ -101,7 +126,7 @@ public class TranslateServiceImpl implements TranslateService {
 
     private String v2(final String original_lang, final String dest_lang, final String original_text) {
         return new RestTemplate().getForObject(YANDEX_V2_URL, String.class, new HashMap<String, String>() {{
-            put("key", YANDEX_KEY);
+            put("key", translate_api);
             put("lang", original_lang + "-" + dest_lang);
             put("text", original_text);
         }});
