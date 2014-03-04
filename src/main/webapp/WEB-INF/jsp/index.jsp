@@ -25,21 +25,20 @@
     <form:form method="post" commandName="translateModel">
         <div class="row">
             <div class="col-xs-6">
-
             </div>
+
             <div class="col-xs-6">
-                <form:select path="dest_langs">
+                <form:select path="destinationLanguage" cssClass="form-control">
                     <form:option value="NONE" label="--- Select ---"/>
-                    <form:options items="${dest_langsList}"/>
+                    <form:options items="${supportedLanguages}"/>
                 </form:select>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" style="padding-top: 20px">
             <div class="col-xs-6">
                 <div class="panel panel-default clearfix">
-                <div class="panel-heading">Source
-                    </div>
+                    <div class="panel-heading">Source</div>
                     <div class="panel-body">
                         <form:textarea class="form-control" path="source"
                                        style="width: 100%;height: 300px;"/>${translatemodel.source}

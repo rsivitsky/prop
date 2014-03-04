@@ -1,8 +1,9 @@
 package com.sivitsky.ruslan.service.impl;
 
-import com.google.gson.Gson;
+import com.sivitsky.ruslan.exception.GeneralServiceException;
 import com.sivitsky.ruslan.service.TranslateService;
 import com.sivitsky.ruslan.service.response.TranslationResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -34,27 +35,30 @@ public class TranslateServiceImpl implements TranslateService {
     @Value("${yandex.translate.api}")
     private String yandexTranslateApi;
 
-    private Gson gson = new Gson();
+    @Autowired
+    private RestTemplate restTemplate;
 
     @Override
-    public String translateLine(String src, String dest, String line) {
-        line = dest;
-        return line.concat("!!!");
+    public Properties stringToProperties(String s) {
+        try {
+            Properties p = new Properties();
+            p.load(new StringReader(s));
+            return p;
+        } catch (IOException e) {
+            throw new GeneralServiceException("Invalid property format????", e);
+        }
     }
 
     @Override
-    public Properties stringToProperties(String s) throws IOException {
-        final Properties p = new Properties();
-        p.load(new StringReader(s));
-        return p;
-    }
-
-    @Override
-    public String propertiesToString(Properties p) throws IOException {
-        String s = "";
-        Writer outWriter = new StringWriter();
-        p.store(outWriter, s);
-        return outWriter.toString();
+    public String propertiesToString(Properties p) {
+        try {
+            String s = "";
+            Writer outWriter = new StringWriter();
+            p.store(outWriter, s);
+            return outWriter.toString();
+        } catch (IOException e) {
+            throw new GeneralServiceException("Invalid property format????", e);
+        }
     }
 
     @Override
@@ -62,35 +66,21 @@ public class TranslateServiceImpl implements TranslateService {
         Properties properties = new Properties();
         Set keys = p.keySet();
         for (Object key : keys) {
-            properties.put(key, v1(destinationLang, p.getProperty(key.toString())));
+            properties.put(key, translateTextInternal(destinationLang, p.getProperty(key.toString())));
         }
         return properties;
     }
 
-    public String v1(String destinationLang, String originalText) {
+    private String translateTextInternal(String targetLang, String originalText) {
         URI targetUrl = UriComponentsBuilder.fromUriString(yandexBaseUrl)
                 .path(yandexTranslateApi)
                 .queryParam("key", yandexKey)
-                .queryParam("lang", destinationLang)
+                .queryParam("lang", targetLang)
                 .queryParam("text", originalText)
                 .build()
                 .toUri();
 
-        String br = new RestTemplate().getForObject(targetUrl, String.class);
-
-        TranslationResponse response = gson.fromJson(br, TranslationResponse.class);
-        return response.getText();
-    }
-
-    public static void main(String[] args) throws NoSuchFieldException, ClassNotFoundException {
-        Properties properties = new Properties();
-        properties.put("color", "red");
-        properties.put("size", "big");
-        properties.put("weight", "ass");
-        TranslateService translateService = new TranslateServiceImpl();
-        Properties result = translateService.translateProperties("ru", properties);
-
-        properties.list(System.out);
-        result.list(System.out);
+        TranslationResponse response = restTemplate.getForObject(targetUrl, TranslationResponse.class);
+        return response.getText().get(0);
     }
 }

@@ -8,15 +8,4 @@
     <context:component-scan base-package="com.sivitsky.ruslan"/>
 
     <context:property-placeholder location="classpath:conn.properties"/>
-
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="searchSystemEnvironment" value="true"/>
-        <property name="ignoreResourceNotFound" value="false"/>
-        <property name="locations">
-            <list>
-                <value>classpath:conn.properties</value>
-            </list>
-        </property>
-    </bean>
-
 </beans>
