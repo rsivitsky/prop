@@ -32,7 +32,7 @@ public class TranslateServiceImpl implements TranslateService {
     private String yandexKey;
 
     @Value("${yandex.translate.api}")
-    private String YandexTranslateApi;
+    private String yandexTranslateApi;
 
     private Gson gson = new Gson();
 
@@ -69,7 +69,7 @@ public class TranslateServiceImpl implements TranslateService {
 
     public String v1(String destinationLang, String originalText) {
         URI targetUrl = UriComponentsBuilder.fromUriString(yandexBaseUrl)
-                .path(YandexTranslateApi)
+                .path(yandexTranslateApi)
                 .queryParam("key", yandexKey)
                 .queryParam("lang", destinationLang)
                 .queryParam("text", originalText)
