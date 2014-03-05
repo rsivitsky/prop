@@ -7,7 +7,7 @@
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
 
-    <name>perevodchik Maven Webapp</name>
+    <name>Property Translator app</name>
 
 
     <dependencies>
@@ -30,9 +30,9 @@
         </dependency>
 
         <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>1.7.1</version>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.9</version>
         </dependency>
 
         <dependency>
@@ -67,7 +67,7 @@
     </dependencies>
 
     <build>
-        <finalName>perevodchik</finalName>
+        <finalName>translator</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

@@ -1,17 +1,14 @@
 package com.sivitsky.ruslan.web;
 
-import com.sivitsky.ruslan.model.TranslateModel;
 import com.sivitsky.ruslan.service.TranslateService;
+import com.sivitsky.ruslan.web.model.TranslateModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.validation.Valid;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -28,51 +25,27 @@ public class WelcomeController {
     @Autowired
     private TranslateService translateService;
 
-    private TranslateModel translateModel;
-
-
-    public void setTranslateModel(TranslateModel translateModel) {
-        this.translateModel = translateModel;
-    }
-
-    @Value("${yandex.base.url}")
-    private String yandex_base_url;
-
-    @Value("${yandex.key}")
-    private String yandex_key;
-
-    @Value("${yandex.translate.api}")
-    private String translate_api;
-
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String initForm(ModelMap model) {
-
-        this.setTranslateModel(new TranslateModel());
-
-        //TranslateModel translateModel = new TranslateModel();
-
+        TranslateModel translateModel = new TranslateModel();
         model.addAttribute("translateModel", translateModel);
-
         return "index";
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.POST)
-    public String loginForumUser(@Valid @ModelAttribute("translateModel") TranslateModel translateModel, BindingResult bindingResult)
-    throws IOException, NoSuchFieldException, ClassNotFoundException {
+    public String loginForumUser(
+            @ModelAttribute("translateModel") TranslateModel translateModel)
+            throws IOException, NoSuchFieldException, ClassNotFoundException {
 
-        if (bindingResult.hasErrors()) {
-            return "index";
-        }
-
-        Properties sourceProperties = translateService.stringToProperties(translateModel.getSource());
-        Properties resultProperties = translateService.translateProperties(translateModel.getDest_langs(), sourceProperties);
-        translateModel.setResult(translateService.propertiesToString(resultProperties));
+        Properties source = translateService.stringToProperties(translateModel.getSource());
+        Properties result = translateService.translateProperties(translateModel.getDestinationLanguage(), source);
+        translateModel.setResult(translateService.propertiesToString(result));
         return "index";
     }
 
-    @ModelAttribute("dest_langsList")
-    public Map<String, String> getLanguages() {
-        Map<String, String> result = new LinkedHashMap<String, String>();
+    @ModelAttribute("supportedLanguages")
+    public Map<String, String> getSupportedLanguages() {
+        Map<String, String> result = new LinkedHashMap<>();
         result.put("en", "english");
         result.put("sq", "albanian");
         result.put("hy", "armenian");

@@ -1,7 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,22 +25,20 @@
     <form:form method="post" commandName="translateModel">
         <div class="row">
             <div class="col-xs-6">
-
             </div>
-            <div class="col-xs-6">
-                <form:select path="dest_langs">
-                    <form:option value="NONE" label="--- Select ---"/>
-                    <form:options items="${dest_langsList}"/>
-                </form:select>
 
+            <div class="col-xs-6">
+                <form:select path="destinationLanguage" cssClass="form-control">
+                    <form:option value="NONE" label="--- Select ---"/>
+                    <form:options items="${supportedLanguages}"/>
+                </form:select>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" style="padding-top: 20px">
             <div class="col-xs-6">
                 <div class="panel panel-default clearfix">
-                    <div class="panel-heading">Source
-                    </div>
+                    <div class="panel-heading">Source</div>
                     <div class="panel-body">
                         <form:textarea class="form-control" path="source"
                                        style="width: 100%;height: 300px;"/>${translatemodel.source}

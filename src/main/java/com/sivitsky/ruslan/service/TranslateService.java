@@ -10,11 +10,9 @@ import java.util.Properties;
  */
 public interface TranslateService {
 
-    Properties translateProperties(String destinationLanguage, Properties p) throws NoSuchFieldException, ClassNotFoundException;
+    Properties translateProperties(String destinationLanguage, Properties p);
 
     Properties stringToProperties(String s) throws IOException;
 
     String propertiesToString(Properties p) throws IOException;
-
-    String translateLine(String src, String dest, String line);
 }
