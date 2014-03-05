@@ -1,13 +1,29 @@
 package com.sivitsky.ruslan.model;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 /**
  * Created by Tanya on 19.02.14.
  */
+
+
 public class TranslateModel {
+
+
+    @NotNull
+    @Pattern(regexp = "[A-Za-z0-9._%+-]+=[A-Za-zА-Яа-я0-9._%+-]", message = "invalid properties strings")
     private String source;
+
     private String result;
+
+
+    @Pattern(regexp = "[a-z]", message = "invalid destination language value")
+    @Size(min = 2, max = 22)
+    @NotNull
     private String dest_langs;
-    private String original_langs;
+
 
     public String getSource() {
         return source;
@@ -33,11 +49,4 @@ public class TranslateModel {
         this.dest_langs = dest_langs;
     }
 
-    public String getOriginal_langs() {
-        return original_langs;
-    }
-
-    public void setOriginal_langs(String original_langs) {
-        this.original_langs = original_langs;
-    }
 }

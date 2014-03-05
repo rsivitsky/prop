@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,13 +33,14 @@
                     <form:option value="NONE" label="--- Select ---"/>
                     <form:options items="${dest_langsList}"/>
                 </form:select>
+
             </div>
         </div>
 
         <div class="row">
             <div class="col-xs-6">
                 <div class="panel panel-default clearfix">
-                <div class="panel-heading">Source
+                    <div class="panel-heading">Source
                     </div>
                     <div class="panel-body">
                         <form:textarea class="form-control" path="source"
