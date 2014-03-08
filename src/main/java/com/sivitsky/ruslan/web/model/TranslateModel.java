@@ -1,13 +1,20 @@
 package com.sivitsky.ruslan.web.model;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 /**
  * @author Tanya
  *         on 19.02.14.
  */
 public class TranslateModel {
 
+    @NotNull
+    @Pattern(regexp = "[A-Za-z_-]+=[A-Za-zА-Яа-я0-9.-]",
+            message = "Invalid email address.")
     private String source;
     private String result;
+    @NotNull
     private String destinationLanguage;
     private String originalLanguage;
 

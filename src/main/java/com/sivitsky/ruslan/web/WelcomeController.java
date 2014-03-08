@@ -5,10 +5,12 @@ import com.sivitsky.ruslan.web.model.TranslateModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -33,10 +35,11 @@ public class WelcomeController {
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.POST)
-    public String loginForumUser(
-            @ModelAttribute("translateModel") TranslateModel translateModel)
-            throws IOException, NoSuchFieldException, ClassNotFoundException {
-
+    public String loginForumUser(@Valid @ModelAttribute("translateModel") TranslateModel translateModel, BindingResult bindingResult)
+    throws IOException, NoSuchFieldException, ClassNotFoundException {
+        if (bindingResult.hasErrors()) {
+            return "index";
+        }
         Properties source = translateService.stringToProperties(translateModel.getSource());
         Properties result = translateService.translateProperties(translateModel.getDestinationLanguage(), source);
         translateModel.setResult(translateService.propertiesToString(result));
