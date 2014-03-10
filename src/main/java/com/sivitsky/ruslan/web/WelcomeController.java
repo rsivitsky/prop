@@ -35,8 +35,10 @@ public class WelcomeController {
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.POST)
-    public String loginForumUser(@Valid @ModelAttribute("translateModel") TranslateModel translateModel, BindingResult bindingResult)
-    throws IOException, NoSuchFieldException, ClassNotFoundException {
+    public String translate(
+            @Valid @ModelAttribute("translateModel") TranslateModel translateModel,
+            BindingResult bindingResult)
+            throws IOException, NoSuchFieldException, ClassNotFoundException {
         if (bindingResult.hasErrors()) {
             return "index";
         }
