@@ -15,6 +15,20 @@
     <script type="text/javascript" src="<spring:url value="/resources/vendor/js/jquery-2.0.3.js"/>"></script>
     <script type="text/javascript" src="<spring:url value="/resources/vendor/js/jquery.tinypubsub.js"/>"></script>
     <script type="text/javascript" src="<spring:url value="/resources/vendor/js/bootstrap-3.0.0.js"/>"></script>
+
+    <style>
+        .error {
+            color: #ff0000;
+        }
+
+        .errorblock {
+            color: #000;
+            background-color: #ffEEEE;
+            border: 3px solid #ff0000;
+            padding: 8px;
+            margin: 16px;
+        }
+    </style>
 </head>
 
 <body>
@@ -23,6 +37,7 @@
     <h2>Property Translator</h2>
 
     <form:form method="post" commandName="translateModel">
+        <form:errors path="*" cssClass="errorblock" element="div"/>
         <div class="row">
             <div class="col-xs-6">
             </div>
