@@ -44,6 +44,7 @@
 
             <div class="col-xs-6">
                 <form:select path="destinationLanguage" cssClass="form-control">
+                    <form:errors path="destinationLanguage" cssClass="error"/>
                     <form:option value="NONE" label="--- Select ---"/>
                     <form:options items="${supportedLanguages}"/>
                 </form:select>
@@ -57,6 +58,7 @@
                     <div class="panel-body">
                         <form:textarea class="form-control" path="source"
                                        style="width: 100%;height: 300px;"/>${translatemodel.source}
+                        <form:errors path="source" cssClass="error"/>
                     </div>
                 </div>
             </div>
