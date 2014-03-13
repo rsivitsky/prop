@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="ftm" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +35,7 @@
 <body>
 <div class="container">
 
-    <h2>Property Translator</h2>
+    <h2><ftm:message key="label.applicationName"/></h2>
 
     <form:form method="post" commandName="translateModel">
         <form:errors path="*" cssClass="errorblock" element="div"/>
@@ -54,7 +55,8 @@
         <div class="row" style="padding-top: 20px">
             <div class="col-xs-6">
                 <div class="panel panel-default clearfix">
-                    <div class="panel-heading">Source</div>
+                    <div class="panel-heading" charset="utf-8"><ftm:message key="label.source"/>
+                    </div>
                     <div class="panel-body">
                         <form:textarea class="form-control" path="source"
                                        style="width: 100%;height: 300px;"/>${translatemodel.source}
@@ -65,7 +67,7 @@
 
             <div class="col-xs-6">
                 <div class="panel panel-default">
-                    <div class="panel-heading" charset=utf-8>Result</div>
+                    <div class="panel-heading" charset=utf-8><ftm:message key="label.result"/></div>
                     <div class="panel-body">
                         <form:textarea path="result" class="form-control" charset="utf-8"
                                        style="width: 100%;height: 300px;"/>${translatemodel.result}
@@ -77,7 +79,7 @@
         <div class="row">
             <div class="col-xs-6 clearfix">
                 <button type="submit" class="btn btn-primary pull-right">
-                    <span class="glyphicon glyphicon-tasks"></span> Translate
+                    <span class="glyphicon glyphicon-tasks"></span> <ftm:message key="label.translate"/>
                 </button>
             </div>
         </div>
