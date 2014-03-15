@@ -13,8 +13,8 @@
     <!-- support JSR303 annotation if JSR 303 validation present on classpath -->
     <mvc:annotation-driven/>
 
-    <bean class="org.springframework.context.support.ResourceBundleMessageSource"
-          id="messageSource">
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="basename" value="messages"/>
+        <property name="useCodeAsDefaultMessage" value="true"/>
     </bean>
 </beans>

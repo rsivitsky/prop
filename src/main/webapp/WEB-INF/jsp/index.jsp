@@ -1,8 +1,8 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="ftm" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,19 +35,20 @@
 <body>
 <div class="container">
 
-    <h2><ftm:message key="label.applicationName"/></h2>
+    <h2><spring:message code="label.application.title"/></h2>
 
     <form:form method="post" commandName="translateModel">
         <form:errors path="*" cssClass="errorblock" element="div"/>
         <div class="row">
             <div class="col-xs-6">
+                    <%--Source language goes here, or "auto" if empty--%>
             </div>
 
             <div class="col-xs-6">
                 <form:select path="destinationLanguage" cssClass="form-control">
-                    <form:errors path="destinationLanguage" cssClass="error"/>
-                    <form:option value="NONE" label="--- Select ---"/>
-                    <form:options items="${supportedLanguages}"/>
+                    <c:forEach var="lang" items="${supportedLanguages}">
+                        <form:option value="${lang.key}"><spring:message code="lang.${lang.value}"/></form:option>
+                    </c:forEach>
                 </form:select>
             </div>
         </div>
@@ -55,7 +56,7 @@
         <div class="row" style="padding-top: 20px">
             <div class="col-xs-6">
                 <div class="panel panel-default clearfix">
-                    <div class="panel-heading" charset="utf-8"><ftm:message key="label.source"/>
+                    <div class="panel-heading" charset="utf-8"><spring:message code="label.source"/>
                     </div>
                     <div class="panel-body">
                         <form:textarea class="form-control" path="source"
@@ -67,7 +68,7 @@
 
             <div class="col-xs-6">
                 <div class="panel panel-default">
-                    <div class="panel-heading" charset=utf-8><ftm:message key="label.result"/></div>
+                    <div class="panel-heading" charset=utf-8><spring:message code="label.result"/></div>
                     <div class="panel-body">
                         <form:textarea path="result" class="form-control" charset="utf-8"
                                        style="width: 100%;height: 300px;"/>${translatemodel.result}
@@ -79,7 +80,7 @@
         <div class="row">
             <div class="col-xs-6 clearfix">
                 <button type="submit" class="btn btn-primary pull-right">
-                    <span class="glyphicon glyphicon-tasks"></span> <ftm:message key="label.translate"/>
+                    <span class="glyphicon glyphicon-tasks"></span> <spring:message code="label.translate"/>
                 </button>
             </div>
         </div>

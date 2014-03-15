@@ -55,7 +55,7 @@ public class WelcomeController {
         result.put("sq", "albanian");
         result.put("hy", "armenian");
         result.put("az", "azerbaijani");
-        result.put("be", "byelorussian");
+        result.put("be", "belorussian");
         result.put("bg", "bulgarian");
         result.put("hu", "hungarian");
         result.put("nl", "flemish");
